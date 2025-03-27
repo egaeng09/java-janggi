@@ -1,6 +1,6 @@
 package janggi.position;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,7 +9,11 @@ public class Path {
     private final List<Position> positions;
 
     public Path(List<Position> positions) {
-        this.positions = positions;
+        this.positions = new ArrayList<>(positions);
+    }
+
+    public boolean hasPosition(Position position) {
+        return positions.contains(position);
     }
 
     @Override
@@ -23,9 +27,5 @@ public class Path {
     @Override
     public int hashCode() {
         return Objects.hashCode(positions);
-    }
-
-    public List<Position> getPositions() {
-        return Collections.unmodifiableList(positions);
     }
 }

@@ -24,6 +24,7 @@ public abstract class Piece {
 
         List<Position> positions = calculateMovingPositions(currentPosition, arrivalPosition, differenceForY,
                 differenceForX);
+
         return new Path(positions);
     }
 
@@ -58,11 +59,16 @@ public abstract class Piece {
 
     void calculatePathX(Position arrivalPosition, int differenceForY, int differenceForX,
                         List<Position> positions, int currentY, int currentX) {
-        int differenceUnitX = calculateUnit(differenceForX);
+        int differenceUnitX = getDifferenceUnitX(differenceForX);
         while (currentX != arrivalPosition.getX()) {
             currentX += differenceUnitX;
             positions.add(Position.valueOf(currentY, currentX));
         }
+    }
+
+    private int getDifferenceUnitX(int differenceForX) {
+        int differenceUnitX = calculateUnit(differenceForX);
+        return differenceUnitX;
     }
 
     int calculateUnit(int difference) {
